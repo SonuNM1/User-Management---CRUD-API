@@ -1,0 +1,34 @@
+{
+  "name": "user-management-crud-api",
+  "version": "1.0.0",
+  "description": "CRUD application with Nodejs, express and mongodb",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SonuNM1/User-Management---CRUD-API.git"
+  },
+  "keywords": [
+    "CRUD",
+    "MongoDB"
+  ],
+  "author": "Sonu NM",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SonuNM1/User-Management---CRUD-API/issues"
+  },
+  "homepage": "https://github.com/SonuNM1/User-Management---CRUD-API#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.3"
+  }
+}
