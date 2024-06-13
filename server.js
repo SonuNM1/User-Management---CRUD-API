@@ -5,6 +5,9 @@ const morgan = require("morgan") ;
 const bodyparser = require("body-parser") ; 
 const path = require("path") ; // in built node module
 
+const connectDB = require('./server/database/connection') ; 
+const { connect } = require("http2");
+
 const app = express() ; 
 
 dotenv.config({path: 'config.env'})
@@ -14,6 +17,10 @@ const PORT = process.env.PORT || 4000 ;
 // log requests - morgan
 
 app.use(morgan('tiny')) ; 
+
+// mongodb connection 
+
+connectDB() ; 
 
 // parse requests to body-parser 
 
