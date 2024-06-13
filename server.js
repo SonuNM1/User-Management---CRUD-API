@@ -1,50 +1,35 @@
+const express = require('express');
+const dotenv = require('dotenv');
+const morgan = require('morgan');
+const bodyparser = require("body-parser");
+const path = require('path');
 
-const express = require("express") ; 
-const dotenv = require("dotenv") ; 
-const morgan = require("morgan") ; 
-const bodyparser = require("body-parser") ; 
-const path = require("path") ; // in built node module
+const connectDB = require('./server/database/connection');
 
-const connectDB = require('./server/database/connection') ; 
-const { connect } = require("http2");
+const app = express();
 
-const app = express() ; 
+dotenv.config( { path : 'config.env'} )
+const PORT = process.env.PORT || 8080
 
-dotenv.config({path: 'config.env'})
+// log requests
+app.use(morgan('tiny'));
 
-const PORT = process.env.PORT || 4000 ; 
+// mongodb connection
+connectDB();
 
-// log requests - morgan
+// parse request to body-parser
+app.use(bodyparser.urlencoded({ extended : true}))
 
-app.use(morgan('tiny')) ; 
+// set view engine
+app.set("view engine", "ejs")
+//app.set("views", path.resolve(__dirname, "views/ejs"))
 
-// mongodb connection 
+// load assets
+app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
+app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
+app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
-connectDB() ; 
-
-// parse requests to body-parser 
-
-app.use(bodyparser.urlencoded({extended: true}))
-app.use(bodyparser.json()) ; 
-
-// set view engine 
-
-app.set('view engine', 'ejs') ; 
-// app.set("views", path.resolve(__dirname, "views/ejs"))
-
-// load assets 
-
-app.use('/css', express.static(path.resolve(__dirname, "assets/css"))) ; 
-
-app.use('/img', express.static(path.resolve(__dirname, "assets/img"))) ; 
-
-app.use('/js', express.static(path.resolve(__dirname, "assets/js"))) ; 
-
-// load routers 
-
+// load routers
 app.use('/', require('./server/routes/router'))
 
-app.listen(PORT, ()=>{
-    console.log(`Server running on http://localhost:${PORT}`)
-})
-
+app.listen(PORT, ()=> { console.log(`Server is running on http://localhost:${PORT}`)});
