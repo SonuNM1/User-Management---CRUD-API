@@ -1,14 +1,16 @@
-var Userdb = require('../model/model');
+var Userdb = require('../model/model'); // importing the User model
 
 // create and save new user
+
 exports.create = (req,res)=>{
-    // validate request
+    // validate request to ensure the body is not empty
     if(!req.body){
         res.status(400).send({ message : "Content can not be emtpy!"});
         return;
     }
 
-    // new user
+    // create a new user instance with the req. data
+
     const user = new Userdb({
         name : req.body.name,
         email : req.body.email,
@@ -21,9 +23,10 @@ exports.create = (req,res)=>{
         .save(user)
         .then(data => {
             //res.send(data)
-            res.redirect('/add-user');
+            res.redirect('/'); // redirect to add_user page after successful creation
         })
         .catch(err =>{
+            // handle errors during the save operation
             res.status(500).send({
                 message : err.message || "Some error occurred while creating a create operation"
             });
@@ -31,9 +34,10 @@ exports.create = (req,res)=>{
 
 }
 
-// retrieve and return all users/ retrive and return a single user
-exports.find = (req, res)=>{
+// Retrieve and return all users or a single user by ID
 
+exports.find = (req, res)=>{
+    // If a query ID is provided, retrieve a single user
     if(req.query.id){
         const id = req.query.id;
 
@@ -48,7 +52,7 @@ exports.find = (req, res)=>{
             .catch(err =>{
                 res.status(500).send({ message: "Erro retrieving user with id " + id})
             })
-
+            // If no query ID, retrieve all users
     }else{
         Userdb.find()
             .then(user => {
@@ -63,7 +67,11 @@ exports.find = (req, res)=>{
 }
 
 // Update a new idetified user by user id
+
 exports.update = (req, res)=>{
+
+    // Validate request to ensure the body is not empty
+
     if(!req.body){
         return res
             .status(400)
@@ -71,6 +79,9 @@ exports.update = (req, res)=>{
     }
 
     const id = req.params.id;
+
+    // Find the user by ID and update with the request data
+
     Userdb.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
@@ -85,8 +96,11 @@ exports.update = (req, res)=>{
 }
 
 // Delete a user with specified user id in the request
+
 exports.delete = (req, res)=>{
     const id = req.params.id;
+
+    // Find the user by ID and delete
 
     Userdb.findByIdAndDelete(id)
         .then(data => {

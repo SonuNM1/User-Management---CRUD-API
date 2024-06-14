@@ -8,28 +8,37 @@ const connectDB = require('./server/database/connection');
 
 const app = express();
 
+// Configuring environment variables
+
 dotenv.config( { path : 'config.env'} )
 const PORT = process.env.PORT || 8080
 
-// log requests
+// Logging HTTP requests using morgan
+
 app.use(morgan('tiny'));
 
 // mongodb connection
+
 connectDB();
 
-// parse request to body-parser
+// Parsing incoming request bodies using body-parser
+
 app.use(bodyparser.urlencoded({ extended : true}))
 
 // set view engine
+
 app.set("view engine", "ejs")
+
 //app.set("views", path.resolve(__dirname, "views/ejs"))
 
-// load assets
+// Serving static files from the "assets" directory
+
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
 // load routers
+
 app.use('/', require('./server/routes/router'))
 
 app.listen(PORT, ()=> { console.log(`Server is running on http://localhost:${PORT}`)});

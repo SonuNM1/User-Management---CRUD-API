@@ -1,17 +1,50 @@
-<% for(var i = 0; i < users.length; i++) { %>
+
+<!-- Loop through each user in the 'users' array -->  
+
+<% for(var i = 0; i < users.length; i++) { %> 
     <tr>
+
+        <!-- Table cell for index -->
+
         <td><%= i + 1 %></td>
+
+        <!-- Table cell for user's name -->
+
         <td><%= users[i].name %></td>
+
+        <!-- Table cell for user's email -->
+
         <td><%= users[i].email %></td>
+
+        <!-- Table cell for user's gender -->
+
         <td><%= users[i].gender %></td>
+
+        <!-- Table cell for user's status -->
+
         <td><%= users[i].status %></td>
         <td>
+
+            <!-- Update button -->
+
             <a href="/update-user?id=<%= users[i]._id%>" class="btn border-shadow update">
+
+                <!-- Icon for update (pencil) -->
+
                 <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
             </a>
+
+            <!-- Delete button -->
+
             <a class="btn border-shadow delete" data-id=<%= users[i]._id%> >
+
+                <!-- Icon for delete -->
+
                 <span class="text-gradient"><i class="fas fa-times"></i></span>
             </a>
         </td>
     </tr>
+    <!-- End of user data row -->
     <% } %>
+
+<!-- End of loop -->

@@ -1,4 +1,9 @@
+
+/* importing google fonts 'Barlow' and 'PT Sans' */
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
+
+/* Defining CSS variables for colors */
 
 :root{
     --dark: #2b2d42;
@@ -7,56 +12,80 @@
     --border-btn: #edf2f4;
 }
 
+/* Resetting padding, margin, and setting box-sizing to border-box for all elements */
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* Removing underline from lins and setting font-family to 'PT Sans' */
+
 a {
     text-decoration: none;
     font-family: 'PT Sans', sans-serif;
 }
+
+/* Setting max-width and centering container */
 
 .container{
     max-width: 1024px;
     margin: auto;
 }
 
+/* Styling for navigation brand: larger font size and bold text */
+
 .nav-brand{
     font-size: 1.5em;
     font-weight: bold;
 }
+
+/* Applying flexbox layout with wrapping */ 
 
 .d-flex{
     display: flex;
     flex-wrap: wrap;
 }
 
+/* Distributing flex items with space between them */
+
 .justify-between{
     justify-content: space-between;
 }
 
+/* Center-aligining text */
+
 .text-center{
     text-align: center;
 }
+
+/* Adding border and shadow to elements */
 
 .border-shadow{
     border: 1px solid var(--border-btn);
     box-shadow: 1px 3px 10px #e9ecef;
 }
 
+/* Setting text color to dark */
+
 .text-dark{
     color: var(--dark);
 }
+
+/* Displaying elements as inline-block */
 
 .inline{
     display: inline-block;
 }
 
+/* Setting text color to light */
+
 .text-light{
     color: var(--light);
 }
+
+/* Applying gradient text color */
 
 .text-gradient{
     background: linear-gradient(to right, #8e2de2, #4a00e0);
@@ -65,30 +94,42 @@ a {
     -webkit-text-fill-color: transparent;
 }
 
+/* Styling header navigation: background color, padding, full width */
+
 #header nav{
     background-color: #06d6a0;
     padding: 1em 0;
     width: 100%;
 }
 
+/* Main site styling: margin top and font family */
+
 #site-main{
     margin-top: 6em;
     font-family: 'Barlow', sans-serif;
 }
+
+/* Styling box navigation links: font size and padding */
 
 #site-main .container .box-nav > a{
     font-size: 1em;
     padding: .5em 1em;
 }
 
+/* Adding margin to forms inside the container */
+
 #site-main .container form{
     margin: 2em 0;
 }
+
+/* Removing border spacing and setting table width to 100% */
 
 table{
     border-spacing: 0px;
     width: 100%;
 }
+
+/* Styling table cells and headers: padding, alignment, border top */
 
 .table td, .table th{
     padding: .75em;
@@ -97,25 +138,35 @@ table{
     border-top: 1px solid var(--border);
 }
 
+/* Styling buttons inside table cells: padding, font size, margin */
+
 .table td > a.btn{
     padding: .3em 1em;
     font-size: 1.1em;
     margin: 0 .2em;
 }
 
+/* Changing background color on table row hover */
+
 .table tr:hover{
     background-color:#06d6a0 ;
 }
 
+/* Removing box shadow from butons inside table cells on row hover */
+
 .table tr:hover td > a{
     box-shadow: none;
 }
+
+/* Styling dark themed table header: text color, background and border color */
 
 .table .thead-dark th{
     color: #fff;
     background-color: var(--dark) ;
     border-color: #32383e;
 }
+
+/* Responsive styling for tables: making table elements block display on small screens */
 
 @media only screen and (max-width: 1024px){
     table, thead, tbody, th, td, tr{
@@ -137,24 +188,33 @@ table{
 
 }
 
-/*  add user & update user template */
+/*  Adding margin top to form titles */
+
 .form-title{
     margin-top: 2em;
 }
 
+/* Adding vertical padding to form title headings  */
+
 .form-title > h2{
     padding: .5em 0;
 }
+
+/* Styling new user section: max width and centering */
 
 .new_user{
     max-width: 786px;
     margin: auto;
 }
 
+/* Adding margin to form groups in update and add user sections */
+
 #update_user .form-group,
 #add_user .form-group{
     margin: .4em 0;
 }
+
+/* Styling text inputs in update and add user forms */
 
 #update_user .form-group input[type="text"],
 #add_user .form-group input[type="text"]{
@@ -167,16 +227,21 @@ table{
     border-radius: .2em;
 }
 
+/* Adding margin to radio button groups in update and add user forms */
+
 #update_user .form-group .radio,
 #add_user .form-group .radio{
     margin: 1em 2em;
 }
 
-/* adding style to radio buttons */
+/* Hiding native radio buttons */
+
 .radio input[type='radio']{
     position: absolute;
     opacity: 0;
 }
+
+/* Custom radio button appearance: styling before pseudo-element */
 
 .radio input[type='radio'] + .radio-label:before{
     content: "";
@@ -196,21 +261,29 @@ table{
     transition: all 250ms ease;
 }
 
+/* Styling checked state of custom radio buttons */
+
 .radio input[type='radio']:checked + .radio-label:before{
     background-color: #16db93;
     box-shadow: inset 0 0 0 4px #e9ecef;
 }
+
+/* Styling focused state of custom radio buttons */
 
 .radio input[type='radio']:focus + .radio-label:before{
     outline: none;
     border-color:#16db93;
 }
 
+/* Styling disabled state of custom radio buttons */
+
 .radio input[type='radio']:disabled + .radio-label:before{
     box-shadow: inset 0 0 0 4px #e9ecef;
     border-color: #b4b4b4;
     background: #b4b4b4;
 }
+
+/* Styling buttons in update and add user forms */
 
 #update_user .form-group .btn,
 #add_user .form-group .btn{
@@ -225,8 +298,20 @@ table{
     margin: .5em 0;
 }
 
+/* Styling hover state for buttons in update and add user forms */
+
 #update_user .form-group .btn:hover,
 #add_user .form-group .btn:hover{
     background-color: var(--dark);
     color: var(--border);
 }
+
+.delete:hover{
+    cursor: pointer;
+}
+
+/*
+
+
+
+*/
